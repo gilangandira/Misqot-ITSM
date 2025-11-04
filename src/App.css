@@ -1,38 +1,122 @@
 .App {
-  text-align: center;
+  height: 100vh;
+  width: 100vw;
+  background-image: url("./assets/bg.jpg");
+  /* background-color: aqua; */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.body {
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* sidebar main */
+.sidebar {
+  height: 100vh;
+  width: 250px;
+  background-color: rgba(33, 59, 72, 0.8); /* transparan */
+  position: fixed;
+  top: 0;
+  left: 0;
+  color: white;
+  transition: 0.3s ease;
+  z-index: 100;
   display: flex;
   flex-direction: column;
+}
+
+/* closed state */
+.sidebar.closed {
+  width: 60px; /* kecil ketika ditutup */
+}
+
+/* toggle button */
+.toggle-btn {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+  cursor: pointer;
+}
+
+/* list styling */
+.sidebar-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+}
+
+.sidebar-list .row {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: 50px;
+  padding: 0 10px;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
-.App-link {
-  color: #61dafb;
+.sidebar-list .row:hover {
+  background-color: rgba(49, 85, 110, 0.7);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.sidebar-list #active {
+  background-color: rgba(49, 85, 110, 0.9);
+}
+
+.row .icon {
+  flex: 30%;
+  display: grid;
+  place-items: center;
+}
+
+.row .title {
+  flex: 70%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  white-space: nowrap;
+}
+
+/* overlay for mobile */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 50;
+}
+
+/* responsive */
+@media (max-width: 768px) {
+  .sidebar {
+    left: -250px; /* hidden by default on mobile */
   }
-  to {
-    transform: rotate(360deg);
+
+  .sidebar.open {
+    left: 0; /* visible when open */
   }
+}
+
+.sidebar-list .row-company {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  padding: 0 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.companies {
+  flex: 70%;
+  display: grid;
+  place-items: center;
+}
+
+.appsIcon {
+  flex: 5%;
+  display: grid;
+  place-items: center;
 }
